@@ -41,9 +41,6 @@
                 </div>
             </div>
             <div class="card">
-                <figure>
-                    <img src="<?php echo $registro['foto']; ?>" alt="">
-                </figure>
                 <div class="contenido">
                     <img src="../../assets/img/img1Rece.png" alt="">
                     <h3>FALTAS</h3>
