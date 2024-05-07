@@ -60,10 +60,6 @@ $sentencia = $conexion->prepare("SELECT ar.*, CONCAT(e.pnombre, ' ', e.snombre, 
                                  INNER JOIN estudiantes AS e ON ar.idestudiante = e.id
                                  INNER JOIN libros AS l ON ar.idlibro = l.id
                                  INNER JOIN curso AS c ON e.idcurso = c.id");
-
-$sentencia->execute();
-$arriendos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-
 $sentencia->execute();
 $lista_arriendo = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -76,6 +72,14 @@ $lista_arriendo = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 <h1>LISTA DE PRESTAMOS</h1>
 <br>
 <div class="card">
+    <div class="card-header">
+        <a href="index.php" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i>
+            Volver
+        </a>
+        <a name="" id="" class="btn btn-danger" href="arriendoPDF.php" role="button" title="Generar Reporte"><i class="fa-solid fa-file-pdf"></i>
+            PDF
+        </a>
+    </div>
     <div class="card-body">
         <div class="table-responsive-sm">
             <table class="table" id="tabla_id">
@@ -117,7 +121,6 @@ $lista_arriendo = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 
             </table>
         </div>
-        <a href="index.php" class="btn btn-primary"><i class="fa-solid fa-arrow-left"></i>Volver</a>
     </div>
 
     <?php include("../../template/footer.php"); ?>
