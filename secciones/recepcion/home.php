@@ -25,7 +25,7 @@
                 <div class="contenido">
                     <h3>ATRASOS</h3>
                     <p>En esta sección puede ingresar los atrasos de los alumnos al ingreso del establecimiento.</p>
-                    <a href="crearAtraso.php">Ingresar aquí</a>
+                    <a href="indexAtraso.php">Ingresar aquí</a>
                 </div>
             </div>
             <div class="card">
@@ -35,7 +35,7 @@
                 <div class="contenido">
                     <h3>RETIROS</h3>
                     <p>En esta sección se ingresa los retiros del alumnos del establecimiento.</p>
-                    <a href="crearRetiro.php">Ingresar aquí</a>
+                    <a href="indexRetiro.php">Ingresar aquí</a>
                 </div>
             </div>
             <div class="card">
@@ -45,7 +45,7 @@
                 </figure> 
                     <h3>FALTAS</h3>
                     <p>En esta sección se ingresa las falta de mas de un día a clases.</p>
-                    <a href="crearFalta.php">Ingresar aquí</a>
+                    <a href="indexFalta.php">Ingresar aquí</a>
                 </div>
             </div>
         </div>
