@@ -20,13 +20,6 @@ if (isset($_GET['txtId'])) {
             unlink("./" . $registro_foto["evidencia"]);
         }
     }
-    /*BUSCAR REGISTRO SI EXISTE(puede servir para curriculum)
-    if (isset($registro_foto["foto"]) && $registro_foto["foto"]!="") {
-        if (file_exists("./".$registro_foto["foto"])) {
-                 unlink("./".$registro_foto["foto"]);
-        }
-    }*/
-
 
     //SENTENCIA SQL PARA ELIMINAR REGISTRO
     $sentencia = $conexion->prepare("DELETE FROM faltas WHERE id=:id");
