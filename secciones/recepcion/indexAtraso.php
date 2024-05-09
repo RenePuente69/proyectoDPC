@@ -28,6 +28,9 @@ $lista_atrasos = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         <a name="" id="" class="btn btn-success" href="crearAtraso.php" role="button" title="Crear Atraso"><i class="fa-solid fa-plus"></i>
             Crear Atraso
         </a>
+        <a name="" id="" class="btn btn-danger" href="atrasosPDF.php" role="button" title="Generar Reporte"><i class="fa-solid fa-file-pdf"></i>
+            PDF
+        </a>
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">

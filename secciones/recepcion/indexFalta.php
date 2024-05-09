@@ -52,6 +52,9 @@ $lista_faltas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         <a name="" id="" class="btn btn-success" href="crearFalta.php" role="button" title="Crear Falta"><i class="fa-solid fa-plus"></i>
             Crear Falta
         </a>
+        <a name="" id="" class="btn btn-danger" href="faltasPDF.php" role="button" title="Generar Reporte"><i class="fa-solid fa-file-pdf"></i>
+            PDF
+        </a>
     </div>
     <div class="card-body">
         <div class="table-responsive-sm">
