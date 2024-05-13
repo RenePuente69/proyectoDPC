@@ -2,8 +2,6 @@
 //Verificar el acceso
 include("../../funciones.php");
 verificarAcceso();
-//INCLUIR LA BASE DE DATOS
-include("../../bd.php");
 //FUNCION DE ELIMINAR
 if (isset($_GET['txtId'])) {
     $txtID = (isset($_GET['txtId'])) ? $_GET['txtId'] : "";
@@ -16,6 +14,8 @@ if (isset($_GET['txtId'])) {
     $mensaje = "Registro Eliminado";
     header("Location: index.php?mensaje=" . $mensaje);
 }
+//INCLUIR LA BASE DE DATOS
+include("../../bd.php");
 //OBTENER VISTA DE PUESTO EN LA BD
 $sentencia = $conexion->prepare("SELECT *,
                                     (SELECT CONCAT(numero, '°' ,letra) FROM curso
@@ -36,6 +36,12 @@ $lista_estudiantes = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     <div class="card-header">
         <a name="" id="" class="btn btn-success" href="crear.php" role="button"><i class="fa-solid fa-plus"></i>
             Agregar nuevo estudiante
+        </a>
+        <a name="" id="" class="btn btn-danger" href="reportesPDF.php" role="button" title="Generar Reporte"><i class="fa-solid fa-file-pdf"></i>
+            PDF
+        </a>
+        <a name="" id="" class="btn btn-success" href="reportesExcel.php" role="button" title="Generar Reporte"><i class="fa-solid fa-file-excel"></i>
+            Excel
         </a>
     </div>
     <div class="card-body">
