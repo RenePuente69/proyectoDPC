@@ -5,7 +5,7 @@ if ($_POST) {
     include("./bd.php");
 
     //OBTENER VISTA DE PUESTO EN LA BD
-    $sentencia = $conexion->prepare("SELECT *,count(*) as n_usuarios, e.idpuesto
+    $sentencia = $conexion->prepare("SELECT *,count(*) as n_usuarios, e.idpuesto, u.foto as foto
                                     FROM usuarios u JOIN empleados e ON u.idempleado = e.id
                                     WHERE usuario=:usuario AND
                                     password=:password");
@@ -21,29 +21,30 @@ if ($_POST) {
     if ($registro["n_usuarios"] > 0) {
         $_SESSION['usuario'] = $registro["usuario"];
         $_SESSION['logueado'] = true;
-        $_SESSION['idpuesto'] = $registro["idpuesto"]; 
-        if ($registro["idpuesto"]==1) {
+        $_SESSION['idpuesto'] = $registro["idpuesto"];
+        // Obtener la ruta de la imagen del usuario
+        $foto = $registro["foto"];
+        if ($registro["idpuesto"] == 1) {
             header("Location:secciones/home/index.php");
-        } elseif ($registro["idpuesto"]==2) {
+        } elseif ($registro["idpuesto"] == 2) {
             header("Location:usuarios1/secciones/home.php");
-        }elseif ($registro["idpuesto"]==3) {
+        } elseif ($registro["idpuesto"] == 3) {
             header("Location:usuarios2/home.php");
         }
     } else {
         $mensaje = "--Usuario o Contraseña Incorrectos--";
     }
-    
 }
 ?>
 
-<?php if(isset($_GET['mensaje'])) {?>
-<script>
-    Swal.fire({
-    icon: "error",
-    title: "Oops...",
-    text: "<?php echo $_GET['mensaje']; ?>"
-});
-</script>
+<?php if (isset($_GET['mensaje'])) { ?>
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "<?php echo $_GET['mensaje']; ?>"
+        });
+    </script>
 <?php } ?>
 
 <!DOCTYPE html>
@@ -67,11 +68,11 @@ if ($_POST) {
 
                 <form action="" method="POST">
                     <h2>Iniciar Sesión</h2>
-                    <?php if(isset($mensaje)){?>
+                    <?php if (isset($mensaje)) { ?>
                         <div class="alert alert-danger" role="alert">
-                            <strong><?php echo $mensaje;?></strong> 
+                            <strong><?php echo $mensaje; ?></strong>
                         </div>
-                    <?php }?>
+                    <?php } ?>
                     <div class="input-contenedor">
                         <i class="fa-solid fa-user"></i>
                         <input type="text" class="form-control" name="usuario" id="usuario" required>
@@ -90,4 +91,3 @@ if ($_POST) {
 </body>
 
 </html>
-

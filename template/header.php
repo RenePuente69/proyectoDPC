@@ -1,7 +1,8 @@
 <?php
 //include("funciones.php");
 //verificarAcceso();
-
+//INCLUIR BD
+include("../../bd.php");
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -9,6 +10,18 @@ $url_base = "http://localhost/proyectoDPC/";
 if (!isset($_SESSION['usuario'])) {
     header("Location:" . $url_base . "login.php");
 }
+
+$sentencia = $conexion->prepare("SELECT foto FROM usuarios WHERE usuario = :usuario");
+$sentencia->bindParam(":usuario", $_SESSION['usuario']);
+$sentencia->execute();
+$foto = $sentencia->fetch(PDO::FETCH_ASSOC)['foto'];
+
+// Concatenar la ruta de la carpeta de imágenes con el nombre de la foto
+$rutaFoto = "../../secciones/usuarios/" . $foto;
+
+// Almacenar la ruta completa de la imagen en una variable de sesión
+$_SESSION['ruta_foto'] = $rutaFoto;
+
 ?>
 
 
@@ -36,13 +49,19 @@ if (!isset($_SESSION['usuario'])) {
     <link rel="stylesheet" href="estilos.css">
 </head>
 
-
 <body id="body">
     <header>
         <div class="icon__menu">
             <i class="fas fa-bars" id="btn_open"></i>
         </div>
+        <div class="user-info" style="display: flex; position: fixed; margin-right: 20px; align-items: center; right: 0;">
+            <!-- Aquí se muestra la imagen del usuario -->
+            <img src="<?php echo $_SESSION['ruta_foto']; ?>" alt="Foto de perfil" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-left: 10px;">
+            <!--<img src="<?php echo isset($_SESSION['foto']) ? $_SESSION['foto'] : '../../assets/img/img2.png'; ?>" alt="" style="width: 60px; height: 60px; border-radius: 50%; object-fit: cover; margin-left: 10px;">-->
+            <span style="font-size: 30px;"><?php echo $_SESSION['usuario'] ?></span>
+        </div>
     </header>
+
 
     <div class="menu__side" id="menu_side">
 
